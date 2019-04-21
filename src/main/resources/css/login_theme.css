@@ -1,0 +1,38 @@
+* {
+    -fx-dark-primary-color : #512DA8;
+    -fx-default-primary-color : #673AB7;
+    -fx-light-primary-color : #D1C4E9;
+    -fx-text-primary-color : #FFFFFF;
+    -fx-accent-color : #03A9F4;
+    -fx-primarytext : #212121;
+    -fx-secondarytext : #757575;
+    -fx-divider-color : #BDBDBD;
+}
+
+.root{
+    -fx-background-color: ghostwhite;
+}
+
+.jfx-button{
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: whitesmoke;
+    -fx-border-color: -fx-default-primary-color;
+}
+
+.jfx-button:hover{
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: -fx-accent-color;
+    -fx-text-fill: whitesmoke;
+}
+
+.glyph-icon{
+    -fx-fill: #757575;
+}
+
+
+.jfx-text-field{
+    -jfx-label-float:true
+}
+

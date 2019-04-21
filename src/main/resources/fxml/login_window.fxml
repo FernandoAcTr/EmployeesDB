@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="250.0" prefWidth="350.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController"
+      stylesheets="@../css/login_theme.css">
+
+    <HBox alignment="CENTER">
+        <MaterialIconView glyphName="LOCK" size="60"/>
+        <VBox.margin>
+            <Insets bottom="20.0"/>
+        </VBox.margin>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="10">
+        <FontAwesomeIconView glyphName="USER" size="25"/>
+        <JFXTextField fx:id="txtUser" promptText="User" HBox.hgrow="ALWAYS" labelFloat="true"/>
+        <padding>
+            <Insets left="30.0" right="30.0"/>
+        </padding>
+        <VBox.margin>
+            <Insets bottom="20.0"/>
+        </VBox.margin>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="10">
+        <FontAwesomeIconView glyphName="KEY" size="25"/>
+        <JFXPasswordField fx:id="txtPassword" promptText="Password" HBox.hgrow="ALWAYS" labelFloat="true"/>
+        <padding>
+            <Insets left="30.0" right="30.0"/>
+        </padding>
+        <VBox.margin>
+            <Insets bottom="20.0"/>
+        </VBox.margin>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="15">
+        <JFXButton fx:id="btnLogin" buttonType="RAISED" prefHeight="35.0" prefWidth="85.0" text="Login"/>
+        <JFXButton fx:id="btnCancel" buttonType="RAISED" prefHeight="35.0" prefWidth="85.0" text="Cancel"/>
+    </HBox>
+
+</VBox>

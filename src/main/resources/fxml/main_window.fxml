@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/main_theme.css, @../css/table_styles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+    <MenuBar>
+        <Menu text="Archivo">
+            <MenuItem fx:id="mnuLogout" text="Logout">
+                <graphic>
+                    <MaterialIconView fill="black" glyphName="EXIT_TO_APP" size="15" />
+                </graphic>
+            </MenuItem>
+            <MenuItem fx:id="mnuExit" text="Exit">
+                <graphic>
+                    <MaterialIconView fill="black" glyphName="CLOSE" size="15" />
+                </graphic>
+            </MenuItem>
+        </Menu>
+
+        <Menu text="Modules">
+
+            <Menu text="Departments">
+                <graphic>
+                    <FontAwesomeIconView fill="black" glyphName="BUILDING_ALT" size="15" />
+                </graphic>
+                <MenuItem fx:id="mnuDepartments" text="Departments"/>
+                <MenuItem fx:id="mnuEmpByDept" text="Employees by Deparments"/>
+            </Menu>
+
+            <Menu text="Reports">
+                <graphic>
+                    <FontAwesomeIconView fill="black" glyphName="FILE_PDF_ALT" size="15" />
+                </graphic>
+                <MenuItem fx:id="mnuReport1" text="Report 1" />
+                <MenuItem fx:id="mnuReport2" text="Report 2" />
+                <MenuItem fx:id="mnuReport3" text="Report 3" />
+                <MenuItem fx:id="mnuReport4" text="Report 4" />
+            </Menu>
+
+        </Menu>
+
+    </MenuBar>
+
+
+    <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0" styleClass="toolbar">
+        <JFXButton fx:id="btnDepartments" prefHeight="50.0" prefWidth="150.0" styleClass="toolbar-button" text="Departments">
+            <graphic>
+                <FontAwesomeIconView fill="black" glyphName="BUILDING_ALT" size="25" />
+            </graphic>
+        </JFXButton>
+        <JFXButton  prefHeight="50.0" prefWidth="100.0" styleClass="toolbar-button" text="OPC2">
+            <graphic>
+                <FontAwesomeIconView fill="black" glyphName="SAVE" size="25" />
+            </graphic>
+        </JFXButton>
+        <JFXButton  prefHeight="50.0" prefWidth="100.0" styleClass="toolbar-button" text="OPC3">
+            <graphic>
+                <FontAwesomeIconView fill="black" glyphName="ADDRESS_BOOK" size="25" />
+            </graphic>
+        </JFXButton>
+        <JFXButton  prefHeight="50.0" prefWidth="100.0" styleClass="toolbar-button" text="OPC4">
+            <graphic>
+                <FontAwesomeIconView fill="black" glyphName="COPY" size="25" />
+            </graphic>
+        </JFXButton>
+        <JFXButton  prefHeight="50.0" prefWidth="100.0" styleClass="toolbar-button" text="OPC5">
+            <graphic>
+                <MaterialDesignIconView fill="black" glyphName="CLIPBOARD_TEXT" size="25" />
+            </graphic>
+        </JFXButton>
+    </HBox>
+
+    <BorderPane VBox.vgrow="ALWAYS">
+
+        <left>
+            <VBox>
+                <padding>
+                    <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
+
+                <VBox spacing="40.0">
+
+                    <JFXTextField fx:id="txtID" promptText="ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <JFXTextField fx:id="txtName" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <JFXTextField fx:id="txtLastName" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <JFXDatePicker fx:id="pickerBirthDate" promptText=" Birth Date" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+                    <JFXDatePicker fx:id="pickerHireDate" promptText="Hire Date" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+                    <JFXComboBox fx:id="comboGender" promptText="Gender" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
+                </VBox>
+
+                <HBox alignment="BOTTOM_CENTER" spacing="10" VBox.vgrow="ALWAYS">
+                    <JFXButton fx:id="btnSave" styleClass="buttonbar-button" text="Save">
+                        <graphic>
+                            <MaterialIconView fill="black" glyphName="SAVE" size="15" />
+                        </graphic>
+                    </JFXButton>
+                    <JFXButton fx:id="btnUpdate" styleClass="buttonbar-button" text="Update">
+                        <graphic>
+                            <FontAwesomeIconView fill="black" glyphName="PENCIL_SQUARE_ALT" size="15" />
+                        </graphic>
+                    </JFXButton>
+                    <JFXButton fx:id="btnDelete" styleClass="buttonbar-button" text="Delete">
+                        <graphic>
+                            <MaterialIconView fill="black" glyphName="DELETE" size="15" />
+                        </graphic>
+                    </JFXButton>
+                    <JFXButton fx:id="btnNew" styleClass="buttonbar-button" text="New">
+                        <graphic>
+                            <MaterialIconView fill="black" glyphName="PERSON_ADD" size="15" />
+                        </graphic>
+                    </JFXButton>
+                    <padding>
+                        <Insets bottom="20" />
+                    </padding>
+                </HBox>
+
+            </VBox>
+        </left>
+
+        <center>
+            <VBox alignment="CENTER" spacing="15">
+                <HBox alignment="CENTER" spacing="10">
+                    <JFXTextField fx:id="txtSearchID" promptText="ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <JFXButton fx:id="btnSearch" buttonType="RAISED" text="Search" />
+                </HBox>
+
+                <TableView fx:id="tableEmployee" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </center>
+
+    </BorderPane>
+
+</VBox>

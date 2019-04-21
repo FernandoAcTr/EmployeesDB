@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="870.0" stylesheets="@../css/main_theme.css, @../css/table_styles.css"
+            xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.EmpDeptController">
+
+    <top>
+        <ToolBar>
+            <JFXButton fx:id="btnRefresh" text="">
+                <graphic>
+                    <MaterialIconView glyphName="REFRESH" size="15"/>
+                </graphic>
+            </JFXButton>
+        </ToolBar>
+    </top>
+
+    <left>
+        <VBox alignment="TOP_CENTER" spacing="30">
+
+            <Panel styleClass="panel-default">
+                <heading>
+                    <Label text="SEARCH"/>
+                </heading>
+
+                <body>
+                    <VBox spacing="15">
+                        <JFXComboBox fx:id="cmbDepartment" promptText="Department">
+                            <HBox.margin>
+                                <Insets bottom="15.0"/>
+                            </HBox.margin>
+                        </JFXComboBox>
+
+                        <HBox spacing="15" alignment="CENTER_LEFT">
+                            <JFXTextField fx:id="txtSearchID" promptText="ID Employee"/>
+                            <JFXButton fx:id="btnSearch" text="">
+                                <graphic>
+                                    <MaterialIconView glyphName="SEARCH" size="20"/>
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+
+                    </VBox>
+                </body>
+
+            </Panel>
+
+            <Panel styleClass="panel-default">
+                <heading>
+                    <Label text="ADD / EDIT"/>
+                </heading>
+
+                <body>
+                    <VBox spacing="15">
+
+                        <JFXTextField fx:id="txtEmpID" promptText="ID. Employee"/>
+                        <JFXComboBox fx:id="cmbAddEmpDept" promptText="Department"/>
+
+                        <JFXDatePicker fx:id="pickerFrom" promptText="From"/>
+                        <JFXDatePicker fx:id="pickerTo" promptText="To"/>
+
+                        <HBox spacing="10">
+                            <JFXButton fx:id="btnAdd" text="Add" styleClass="buttonbar-button">
+                                <graphic>
+                                    <MaterialIconView glyphName="SAVE" size="20"/>
+                                </graphic>
+                            </JFXButton>
+                            <JFXButton fx:id="btnDelete" text="Delete" styleClass="buttonbar-button">
+                                <graphic>
+                                    <MaterialIconView glyphName="DELETE" size="20"/>
+                                </graphic>
+                            </JFXButton>
+                            <JFXButton fx:id="btnNew" styleClass="buttonbar-button" text="New">
+                                <graphic>
+                                    <MaterialIconView fill="black" glyphName="PERSON_ADD" size="15" />
+                                </graphic>
+                            </JFXButton>
+                        </HBox>
+                    </VBox>
+                </body>
+
+            </Panel>
+
+            <padding>
+                <Insets left="10.0" top="15.0" right="15"/>
+            </padding>
+
+        </VBox>
+    </left>
+
+    <center>
+        <TableView fx:id="tableDepartments" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS"/>
+    </center>
+
+</BorderPane>

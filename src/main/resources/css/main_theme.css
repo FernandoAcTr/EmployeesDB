@@ -1,0 +1,61 @@
+* {
+    -fx-primary-dark-color : #0288D1;
+    -fx-primary-default-color : #B3E5FC;
+    -fx-primary-light-color : #03A9F4;
+    -fx-accent-color : #CDDC39;
+    -fx-primarytext : #212121;
+    -fx-secondarytext : #757575;
+    -fx-divider-color : #BDBDBD;
+}
+
+.root{
+    -fx-background-color: ghostwhite;
+}
+
+.buttonbar-button{
+    -jfx-button-type: RAISED;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.buttonbar-button:hover{
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-background-color: -fx-accent-color;
+    -fx-text-fill: whitesmoke;
+}
+
+.toolbar-button{
+    -jfx-button-type: FLAT;
+    -fx-background-radius: 2px;
+    -fx-content-display: left;
+}
+
+.toolbar-button:hover{
+    -fx-border-color: -fx-accent-color;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+.jfx-rippler{
+    -jfx-rippler-fill: -fx-accent-color;
+}
+
+.toolbar{
+    -fx-background-color: #FFFFFF;
+}
+
+.menu:hover {
+    -fx-background-color: -fx-accent-color;
+}
+
+.menu-item:hover{
+    -fx-background-color: -fx-accent-color;
+}
+
+.jfx-text-field{
+    -jfx-label-float: true;
+}
+
+.glyph-icon{
+    -fx-fill: #757575;
+}
