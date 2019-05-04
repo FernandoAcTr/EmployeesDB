@@ -2,7 +2,7 @@ package controller;
 
 import DAOClass.DepartmentDAO;
 import DAOClass.EmployeeDAO;
-import DAOClass.ReuseDAO;
+import DAOClass.GeneralDAO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -54,7 +54,7 @@ public class MainController implements Initializable {
     private MenuItem mnuReport1, mnuReport2, mnuReport3, mnuReport4;
 
     private EmployeeDAO employeeDAO;
-    private ReuseDAO reuseDAO;
+    private GeneralDAO generalDAO;
     private DepartmentDAO departmentDAO;
 
     private String userType;
@@ -73,7 +73,7 @@ public class MainController implements Initializable {
     private void initData() {
         comboGender.getItems().addAll("M", "F");
         employeeDAO = new EmployeeDAO(Conexion.getConnection());
-        reuseDAO = new ReuseDAO(Conexion.getConnection());
+        generalDAO = new GeneralDAO(Conexion.getConnection());
         departmentDAO = new DepartmentDAO(Conexion.getConnection());
     }
 
@@ -384,7 +384,8 @@ public class MainController implements Initializable {
             reportTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                 @Override
                 public void handle(WorkerStateEvent event) {
-                    MyUtils.makeDialog("Succeess", "Report: "+Rfile.getName()+" finished", null, Alert.AlertType.CONFIRMATION).show();
+                    MyUtils.makeDialog("Succeess", "Report: "+Rfile.getName()+" finished", null,
+                            Alert.AlertType.CONFIRMATION).show();
                 }
             });
 
@@ -405,7 +406,7 @@ public class MainController implements Initializable {
 
             for (Department dept : departments) {
                 pdfReport.addSubtitle(dept.getName());
-                String values[][] = reuseDAO.getFiveMaxSalaryFromDept(dept.getDeptNo());
+                String values[][] = generalDAO.getFiveMaxSalaryFromDept(dept.getDeptNo());
                 pdfReport.addTable(headers, values);
             }
 
@@ -458,7 +459,7 @@ public class MainController implements Initializable {
             for (Department dept : departments) {
 
                 pdfReport.addSubtitle(dept.getName());
-                String table1[][] = reuseDAO.getSalaryFromEmployeesOfDeparment(dept.getDeptNo());
+                String table1[][] = generalDAO.getSalaryFromEmployeesOfDeparment(dept.getDeptNo());
                 pdfReport.addTable(headers1, table1);
                 pdfReport.addBlankLine();
             }
@@ -466,7 +467,7 @@ public class MainController implements Initializable {
             pdfReport.addBlankLine();
             pdfReport.addBlankLine();
             pdfReport.addSubtitle("Total Employees for each Department");
-            String table2[][] = reuseDAO.getEmployeesOfDeparment();
+            String table2[][] = generalDAO.getEmployeesOfDeparment();
             pdfReport.addTable(headers2, table2);
 
             pdfReport.closeDocument();

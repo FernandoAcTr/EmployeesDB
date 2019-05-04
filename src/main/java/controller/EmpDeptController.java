@@ -2,7 +2,7 @@ package controller;
 
 import DAOClass.DepartmentDAO;
 import DAOClass.EmpDeptDAO;
-import DAOClass.ReuseDAO;
+import DAOClass.GeneralDAO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -35,7 +35,7 @@ public class EmpDeptController implements Initializable {
     private JFXComboBox<Department> cmbDepartment, cmbAddEmpDept;
 
     @FXML
-    private TableView<ReuseBean> tableDepartments;
+    private TableView<GeneralBean> tableDepartments;
 
     @FXML
     private JFXTextField txtSearchID, txtEmpID;
@@ -43,7 +43,7 @@ public class EmpDeptController implements Initializable {
     @FXML
     private JFXDatePicker pickerFrom, pickerTo;
 
-    private ReuseDAO reuseDAO;
+    private GeneralDAO generalDAO;
     private DepartmentDAO departmentDAO;
     private EmpDeptDAO empDeptDAO;
 
@@ -60,7 +60,7 @@ public class EmpDeptController implements Initializable {
         updateMode = false;
 
         empDeptDAO = new EmpDeptDAO(Conexion.getConnection());
-        reuseDAO = new ReuseDAO(Conexion.getConnection());
+        generalDAO = new GeneralDAO(Conexion.getConnection());
         departmentDAO = new DepartmentDAO(Conexion.getConnection());
     }
 
@@ -75,7 +75,7 @@ public class EmpDeptController implements Initializable {
 
         cmbDepartment.valueProperty().addListener((ObservableValue<? extends Department> observable, Department oldValue, Department newValue) -> {
             if(newValue != null) {
-                ObservableList<ReuseBean> listReuse = reuseDAO.getEmpByDept(1000, newValue.getDeptNo());
+                ObservableList<GeneralBean> listReuse = generalDAO.getEmpByDept(1000, newValue.getDeptNo());
                 tableDepartments.setItems(listReuse);
             }
         });
@@ -126,7 +126,7 @@ public class EmpDeptController implements Initializable {
         btnDelete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ReuseBean reuse = tableDepartments.getSelectionModel().getSelectedItem();
+                GeneralBean reuse = tableDepartments.getSelectionModel().getSelectedItem();
                 Employee emp = new Employee();
                 Department dept = new Department();
 
@@ -145,12 +145,12 @@ public class EmpDeptController implements Initializable {
     }
 
     private void initTable() {
-        TableColumn<ReuseBean, String> colEmpNo = new TableColumn<>("ID. Employee");
-        TableColumn<ReuseBean, String> colName = new TableColumn<>("First Name");
-        TableColumn<ReuseBean, String> colLastName = new TableColumn<>("Last Name");
-        TableColumn<ReuseBean, String> colDepartment = new TableColumn<>("Department");
-        TableColumn<ReuseBean, String> colFrom = new TableColumn<>("From Date");
-        TableColumn<ReuseBean, String> colTo = new TableColumn<>("To Date");
+        TableColumn<GeneralBean, String> colEmpNo = new TableColumn<>("ID. Employee");
+        TableColumn<GeneralBean, String> colName = new TableColumn<>("First Name");
+        TableColumn<GeneralBean, String> colLastName = new TableColumn<>("Last Name");
+        TableColumn<GeneralBean, String> colDepartment = new TableColumn<>("Department");
+        TableColumn<GeneralBean, String> colFrom = new TableColumn<>("From Date");
+        TableColumn<GeneralBean, String> colTo = new TableColumn<>("To Date");
 
         colEmpNo.setCellValueFactory(new PropertyValueFactory<>("value1"));
         colName.setCellValueFactory(new PropertyValueFactory<>("value2"));
@@ -165,13 +165,13 @@ public class EmpDeptController implements Initializable {
     }
 
     private void reloadTable(){
-        ObservableList<ReuseBean> list = reuseDAO.getAllEmpByDept(1000);
+        ObservableList<GeneralBean> list = generalDAO.getAllEmpByDept(1000);
         tableDepartments.setItems(list);
     }
 
     private void searchEmployee(){
         String id = txtSearchID.getText().trim();
-        ObservableList<ReuseBean> list = reuseDAO.getEmpByDept(id);
+        ObservableList<GeneralBean> list = generalDAO.getEmpByDept(id);
         tableDepartments.setItems(list);
     }
 
@@ -231,7 +231,7 @@ public class EmpDeptController implements Initializable {
     /**------------------------------------------------------------------------------------------------------------------**/
 
     private void onDoubleTableClick(){
-        ReuseBean reuse = tableDepartments.getSelectionModel().getSelectedItem();
+        GeneralBean reuse = tableDepartments.getSelectionModel().getSelectedItem();
         Employee emp = new Employee();
         Department dept = new Department();
 

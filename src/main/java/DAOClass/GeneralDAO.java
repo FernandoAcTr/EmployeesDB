@@ -2,7 +2,7 @@ package DAOClass;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.ReuseBean;
+import model.GeneralBean;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,30 +12,30 @@ import java.sql.Statement;
 /**
  * Class where multitable querys are done
  */
-public class ReuseDAO{
+public class GeneralDAO {
 
     private Connection con;
 
-    public ReuseDAO(Connection con) {
+    public GeneralDAO(Connection con) {
         this.con = con;
     }
 
     /** get Employees by specific Dept**/
-    public ObservableList<ReuseBean> getEmpByDept(int limit, String numDep){
+    public ObservableList<GeneralBean> getEmpByDept(int limit, String numDep){
 
-        ObservableList<ReuseBean> list = FXCollections.observableArrayList();
+        ObservableList<GeneralBean> list = FXCollections.observableArrayList();
         String query = "SELECT dept_emp.*, d.dept_name as department, e.first_name, e.last_name" +
                 " FROM dept_emp JOIN employees e on dept_emp.emp_no = e.emp_no JOIN departments d on dept_emp.dept_no = d.dept_no" +
                 " WHERE d.dept_no = '"+numDep+"'" +
                 " LIMIT "+limit;
 
-        ReuseBean reuse;
+        GeneralBean reuse;
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()){
-                reuse = new ReuseBean();
+                reuse = new GeneralBean();
                 reuse.setValue1(rs.getString("emp_no"));
                 reuse.setValue2(rs.getString("first_name"));
                 reuse.setValue3(rs.getString("last_name"));
@@ -53,20 +53,20 @@ public class ReuseDAO{
     }
 
     /**Get all employees that are register in any Department**/
-    public ObservableList<ReuseBean> getAllEmpByDept(int limit){
+    public ObservableList<GeneralBean> getAllEmpByDept(int limit){
 
-        ObservableList<ReuseBean> list = FXCollections.observableArrayList();
+        ObservableList<GeneralBean> list = FXCollections.observableArrayList();
         String query = "SELECT dept_emp.*, d.dept_name as department, e.first_name, e.last_name" +
                 " FROM dept_emp JOIN employees e on dept_emp.emp_no = e.emp_no JOIN departments d on dept_emp.dept_no = d.dept_no" +
                 " LIMIT "+limit;
 
-        ReuseBean reuse;
+        GeneralBean reuse;
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()){
-                reuse = new ReuseBean();
+                reuse = new GeneralBean();
                 reuse.setValue1(rs.getString("emp_no"));
                 reuse.setValue2(rs.getString("first_name"));
                 reuse.setValue3(rs.getString("last_name"));
@@ -84,20 +84,20 @@ public class ReuseDAO{
     }
 
     /** Get an specific employee from any Department**/
-    public ObservableList<ReuseBean> getEmpByDept(String emp_no){
+    public ObservableList<GeneralBean> getEmpByDept(String emp_no){
 
-        ObservableList<ReuseBean> list = FXCollections.observableArrayList();
+        ObservableList<GeneralBean> list = FXCollections.observableArrayList();
         String query = "SELECT dept_emp.*, d.dept_name as department, e.first_name, e.last_name" +
                 " FROM dept_emp JOIN employees e on dept_emp.emp_no = e.emp_no JOIN departments d on dept_emp.dept_no = d.dept_no" +
                 " WHERE dept_emp.emp_no = '"+emp_no+"'";
 
-        ReuseBean reuse;
+        GeneralBean reuse;
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()){
-                reuse = new ReuseBean();
+                reuse = new GeneralBean();
                 reuse.setValue1(rs.getString("emp_no"));
                 reuse.setValue2(rs.getString("first_name"));
                 reuse.setValue3(rs.getString("last_name"));
@@ -134,18 +134,21 @@ public class ReuseDAO{
             ResultSet rs = st.executeQuery(query);
 
             rs.last();
+
             int rowsCounter = rs.getRow();
+            int columnCounter = rs.getMetaData().getColumnCount();
             data = new String[rowsCounter][];
 
             rs.first();
 
             for (int row = 0; row < rowsCounter; row++){
+
                 data[row] = new String[4]; //num of columns that query give
 
-                data[row][0] = rs.getString("first_name");
-                data[row][1] = rs.getString("last_name");
-                data[row][2] = rs.getString("max_salary");
-                data[row][3] = rs.getString("dept_name");
+                for (int column = 0; column < columnCounter; column++) {
+                    data[row][column] = rs.getString(column+1);
+                }
+
                 rs.next();
             }
 
@@ -176,6 +179,7 @@ public class ReuseDAO{
 
             rs.last();
             int rowsCounter = rs.getRow();
+            int columnCounter = rs.getMetaData().getColumnCount();
             data = new String[rowsCounter][];
 
             rs.first();
@@ -183,9 +187,9 @@ public class ReuseDAO{
             for (int row = 0; row < rowsCounter; row++){
                 data[row] = new String[3]; //num of columns that query give
 
-                data[row][0] = rs.getString("first_name");
-                data[row][1] = rs.getString("last_name");
-                data[row][2] = rs.getString("salary");
+                for (int column = 0; column < columnCounter; column++) {
+                    data[row][column] = rs.getString(column+1);
+                }
                 rs.next();
             }
 

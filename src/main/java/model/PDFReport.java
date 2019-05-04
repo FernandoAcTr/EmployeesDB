@@ -10,15 +10,11 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import javafx.scene.text.Font;
-import sun.font.FontFamily;
 
-import java.io.*;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.File;
+import java.io.IOException;
 
 public class PDFReport {
 

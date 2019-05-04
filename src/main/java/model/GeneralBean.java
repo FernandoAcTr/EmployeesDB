@@ -1,6 +1,6 @@
 package model;
 
-public class ReuseBean {
+public class GeneralBean {
     private String value1;
     private String value2;
     private String value3;
@@ -12,7 +12,7 @@ public class ReuseBean {
     private String value9;
     private String value10;
 
-    public ReuseBean() {
+    public GeneralBean() {
     }
 
     public String getValue1() {
